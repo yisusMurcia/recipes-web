@@ -21,4 +21,5 @@ public class User {
     private String password;
     private Recipe[] myRecipes;
     private Recipe[] favRecipes;
+    private UserRol userRol;
 }
