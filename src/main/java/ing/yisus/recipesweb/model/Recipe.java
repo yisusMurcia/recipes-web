@@ -1,4 +1,4 @@
-package ing.yisus.recipesweb.entity;
+package ing.yisus.recipesweb.model;
 
 import lombok.*;
 

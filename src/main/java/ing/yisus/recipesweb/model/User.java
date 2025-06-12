@@ -1,4 +1,4 @@
-package ing.yisus.recipesweb.entity;
+package ing.yisus.recipesweb.model;
 
 /**
  * Represents a user in the recipe web application.
