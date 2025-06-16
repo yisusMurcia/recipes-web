@@ -1,0 +1,84 @@
+html {
+    background-color: #f3efe1;
+}
+
+header {
+    background-color: #c5a975;
+    text-align: center;
+    padding: 0.2rem;
+    border-radius: 0.5rem;
+}
+
+h1,h2,h3{
+    font-family: "Sour Gummy", sans-serif;
+    color: #322318;
+    font-family: "Bubblegum Sans", sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+    font-family: "Sour Gummy", sans-serif;
+    color: #322318;
+}
+
+.recipe {
+    background-color: #d6c59b;
+    border-radius: 0.8rem;
+    padding: 1rem;
+    margin: 0.7rem;
+}
+
+.recipe ul{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+
+.recipe_tags {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+
+.recipe_instructions {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+
+.recipe-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #d6c59b;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 0.5rem;
+    gap: 0.5rem;
+}
+
+input{
+    border-radius: 5px;
+    border: solid ipx #322318;
+    background-color: #f3efe1;
+    font-family: "Sour Gummy", sans-serif;;
+}
+
+input[type="submit"] {
+    background-color: #c5a975;
+    color: #322318;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+}
