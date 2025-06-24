@@ -15,6 +15,7 @@
         <h1>Unete y se parte de la familia</h1>
     </header>
     <form action="register" method="post">
+        <span class="error-message" th:if="${errorMessage}" th:text="${errorMessage}"></span>
         <label for="username">Tu nombre de usuario</label>
         <input type="text" id="username" name="username" required>
 
