@@ -30,16 +30,14 @@ public class Control {
     }
 
     @PostMapping("register")
-    public String register(@RequestParam String username, @RequestParam String password, @RequestParam String userRol, @RequestParam(required = false) String adminPassword, Model model, RedirectAttributes redirectAttributes) {
+    public String register(@RequestParam String username, @RequestParam String password, @RequestParam String userRol, @RequestParam(required = false) String adminPassword, Model model) {
         UserDto userDto = new UserDto(username, password, userRol, null, null, adminPassword);
         User user = DtoUserMapper.DtoToModel(userDto);
         UserEntity entity = DtoUserMapper.DtoToEntity(userDto, userService.getUserCount() + 1);
         if(userService.registerUser(entity)){//Check if user is new
-            redirectAttributes.addAttribute("user", user);
-            model.addAttribute("user", user);
+            model.addAttribute("username", user.getUsername());
             return "index";
         }else{
-            redirectAttributes.addAttribute("user", null);
             model.addAttribute("errorMessage", "Nombre de usuario en uso");
             return "sign-up";
         }
@@ -49,7 +47,7 @@ public class Control {
     public String loginUser(@RequestParam String username, @RequestParam String password, Model model) {
         User user = userService.loginUser(username, password);
         if (user != null) {
-            model.addAttribute("user", user);
+            model.addAttribute("username", user.getUsername());
             return "index";
         } else {
             model.addAttribute("errorMessage", "Usuario o contraseña incorrectos");
