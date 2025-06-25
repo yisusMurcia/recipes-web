@@ -10,96 +10,164 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/bd5aaa4d2e.js" crossorigin="anonymous"></script>
 </head>
 <header>
     <h1>Mis recetas</h1>
+    <nav class="recipes-filter">
+        <ul>
+           <li><button id="all">Conoce todas las recetas</button></li>
+           <li><button id="favorites">Vuelve a ver tus favoritas</button></li>
+           <li><button id="my-recipes">Tus propias creaciones</button></li>
+        </ul>
+    </nav>
 </header>
 <body>
     <section class="recipe-container">
-        <div class="recipe">
-            <p class="recipe_title"><b>Oat Cake</b></p>
-            <p><b>Ingredientes:</b></p>
-            <ul class="recipe_ingredients">
-                <li>Avena</li>
-                <li>Leche</li>
-                <li>Banano </li>
-                <li>Huevo</li>
+        <!-- Receta: Ensalada César Clásica (johnD) -->
+        <div class="recipe bg-white p-6 rounded-lg shadow-md flex flex-col">
+            <p class="recipe_title text-2xl font-semibold text-gray-800 mb-3"><b>Ensalada César Clásica</b></p>
+            <p class="text-lg font-medium text-gray-700 mb-2"><b>Ingredientes:</b></p>
+            <ul class="recipe_ingredients list-disc list-inside text-gray-600 mb-4 flex-grow">
+                <li>lechuga romana</li>
+                <li>crutones</li>
+                <li>queso parmesano</li>
+                <li>aderezo césar</li>
             </ul>
-            <p><b>Etiquetas:</b></p>
-            <ul class="recipe_tags">
-                <li>Desayuno</li>
-                <li>Dulce</li>
+            <p class="text-lg font-medium text-gray-700 mb-2"><b>Etiquetas:</b></p>
+            <ul class="recipe_tags flex flex-wrap gap-2 mb-4">
+                <li class="bg-blue-200 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">SALTY</li>
+                <li class="bg-blue-200 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">VEGETABLES</li>
+                <li class="bg-blue-200 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">SALAD</li>
+                <li class="bg-green-200 text-green-800 text-sm font-semibold px-3 py-1 rounded-full">HEALTHY</li>
+                <li class="bg-green-200 text-green-800 text-sm font-semibold px-3 py-1 rounded-full">LUNCH</li>
             </ul>
-            <p><b>Instrucciones:</b></p>
-            <p class="recipe_instructions">Mezclar todos los ingredientes en licuadora</p>
+            <p class="text-lg font-medium text-gray-700 mb-2"><b>Instrucciones:</b></p>
+            <p class="recipe_instructions text-gray-600 leading-relaxed">1. Lavar y cortar la lechuga romana. 2. Preparar el aderezo César. 3. Añadir crutones y queso parmesano.</p>
         </div>
-        <div class="recipe">
-            <p class="recipe_title"><b>Oat Cake</b></p>
-            <p><b>Ingredientes:</b></p>
-            <ul class="recipe_ingredients">
-                <li>Avena</li>
-                <li>Leche</li>
-                <li>Banano </li>
-                <li>Huevo</li>
+
+        <!-- Receta: Spaghetti a la Boloñesa (johnD) -->
+        <div class="recipe bg-white p-6 rounded-lg shadow-md flex flex-col">
+            <p class="recipe_title text-2xl font-semibold text-gray-800 mb-3"><b>Spaghetti a la Boloñesa</b></p>
+            <p class="text-lg font-medium text-gray-700 mb-2"><b>Ingredientes:</b></p>
+            <ul class="recipe_ingredients list-disc list-inside text-gray-600 mb-4 flex-grow">
+                <li>spaghetti</li>
+                <li>carne molida</li>
+                <li>salsa de tomate</li>
+                <li>cebolla</li>
+                <li>ajo</li>
             </ul>
-            <p><b>Etiquetas:</b></p>
-            <ul class="recipe_tags">
-                <li>Desayuno</li>
-                <li>Dulce</li>
+            <p class="text-lg font-medium text-gray-700 mb-2"><b>Etiquetas:</b></p>
+            <ul class="recipe_tags flex flex-wrap gap-2 mb-4">
+                <li class="bg-blue-200 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">MEAT</li>
+                <li class="bg-blue-200 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">PASTA</li>
+                <li class="bg-blue-200 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">SAVORY</li>
+                <li class="bg-green-200 text-green-800 text-sm font-semibold px-3 py-1 rounded-full">DINNER</li>
+                <li class="bg-green-200 text-green-800 text-sm font-semibold px-3 py-1 rounded-full">TASTY</li>
             </ul>
-            <p><b>Instrucciones:</b></p>
-            <p class="recipe_instructions">Mezclar todos los ingredientes en licuadora</p>
+            <p class="text-lg font-medium text-gray-700 mb-2"><b>Instrucciones:</b></p>
+            <p class="recipe_instructions text-gray-600 leading-relaxed">1. Cocinar la carne molida con cebolla y ajo. 2. Añadir salsa de tomate y cocinar a fuego lento. 3. Servir con spaghetti.</p>
         </div>
-        <div class="recipe">
-            <p class="recipe_title"><b>Oat Cake</b></p>
-            <p><b>Ingredientes:</b></p>
-            <ul class="recipe_ingredients">
-                <li>Avena</li>
-                <li>Leche</li>
-                <li>Banano </li>
-                <li>Huevo</li>
+
+        <!-- Receta: Tarta de Manzana Casera (johnD) -->
+        <div class="recipe bg-white p-6 rounded-lg shadow-md flex flex-col">
+            <p class="recipe_title text-2xl font-semibold text-gray-800 mb-3"><b>Tarta de Manzana Casera</b></p>
+            <p class="text-lg font-medium text-gray-700 mb-2"><b>Ingredientes:</b></p>
+            <ul class="recipe_ingredients list-disc list-inside text-gray-600 mb-4 flex-grow">
+                <li>manzanas</li>
+                <li>harina</li>
+                <li>azúcar</li>
+                <li>canela</li>
+                <li>mantequilla</li>
             </ul>
-            <p><b>Etiquetas:</b></p>
-            <ul class="recipe_tags">
-                <li>Desayuno</li>
-                <li>Dulce</li>
+            <p class="text-lg font-medium text-gray-700 mb-2"><b>Etiquetas:</b></p>
+            <ul class="recipe_tags flex flex-wrap gap-2 mb-4">
+                <li class="bg-blue-200 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">SWEET</li>
+                <li class="bg-blue-200 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">FRUIT</li>
+                <li class="bg-blue-200 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">DESSERT</li>
+                <li class="bg-green-200 text-green-800 text-sm font-semibold px-3 py-1 rounded-full">TASTY</li>
+                <li class="bg-green-200 text-green-800 text-sm font-semibold px-3 py-1 rounded-full">SNACK</li>
             </ul>
-            <p><b>Instrucciones:</b></p>
-            <p class="recipe_instructions">Mezclar todos los ingredientes en licuadora</p>
+            <p class="text-lg font-medium text-gray-700 mb-2"><b>Instrucciones:</b></p>
+            <p class="recipe_instructions text-gray-600 leading-relaxed">1. Preparar la masa de tarta. 2. Rellenar con manzanas cortadas y canela. 3. Hornear hasta dorar.</p>
         </div>
-        <div class="recipe">
-            <p class="recipe_title"><b>Oat Cake</b></p>
-            <p><b>Ingredientes:</b></p>
-            <ul class="recipe_ingredients">
-                <li>Avena</li>
-                <li>Leche</li>
-                <li>Banano </li>
-                <li>Huevo</li>
+
+        <!-- Receta: Curry de Garbanzos Vegano (yisus) -->
+        <div class="recipe bg-white p-6 rounded-lg shadow-md flex flex-col">
+            <p class="recipe_title text-2xl font-semibold text-gray-800 mb-3"><b>Curry de Garbanzos Vegano</b></p>
+            <p class="text-lg font-medium text-gray-700 mb-2"><b>Ingredientes:</b></p>
+            <ul class="recipe_ingredients list-disc list-inside text-gray-600 mb-4 flex-grow">
+                <li>garbanzos</li>
+                <li>cebolla</li>
+                <li>jengibre</li>
+                <li>tomate triturado</li>
+                <li>especias curry</li>
+                <li>leche de coco</li>
+                <li>arroz</li>
             </ul>
-            <p><b>Etiquetas:</b></p>
-            <ul class="recipe_tags">
-                <li>Desayuno</li>
-                <li>Dulce</li>
+            <p class="text-lg font-medium text-gray-700 mb-2"><b>Etiquetas:</b></p>
+            <ul class="recipe_tags flex flex-wrap gap-2 mb-4">
+                <li class="bg-blue-200 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">VEGAN</li>
+                <li class="bg-blue-200 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">VEGETABLES</li>
+                <li class="bg-blue-200 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">SPICY</li>
+                <li class="bg-green-200 text-green-800 text-sm font-semibold px-3 py-1 rounded-full">HEALTHY</li>
+                <li class="bg-green-200 text-green-800 text-sm font-semibold px-3 py-1 rounded-full">DINNER</li>
             </ul>
-            <p><b>Instrucciones:</b></p>
-            <p class="recipe_instructions">Mezclar todos los ingredientes en licuadora</p>
+            <p class="text-lg font-medium text-gray-700 mb-2"><b>Instrucciones:</b></p>
+            <p class="recipe_instructions text-gray-600 leading-relaxed">1. Saltear cebolla y jengibre. 2. Añadir garbanzos, tomate triturado y especias de curry. 3. Cocinar a fuego lento y servir con arroz.</p>
         </div>
-        <div class="recipe">
-            <p class="recipe_title"><b>Oat Cake</b></p>
-            <p><b>Ingredientes:</b></p>
-            <ul class="recipe_ingredients">
-                <li>Avena</li>
-                <li>Leche</li>
-                <li>Banano </li>
-                <li>Huevo</li>
+
+        <!-- Receta: Salmón al Horno con Espárragos (yisus) -->
+        <div class="recipe bg-white p-6 rounded-lg shadow-md flex flex-col">
+            <p class="recipe_title text-2xl font-semibold text-gray-800 mb-3"><b>Salmón al Horno con Espárragos</b></p>
+            <p class="text-lg font-medium text-gray-700 mb-2"><b>Ingredientes:</b></p>
+            <ul class="recipe_ingredients list-disc list-inside text-gray-600 mb-4 flex-grow">
+                <li>salmón</li>
+                <li>espárragos</li>
+                <li>limón</li>
+                <li>aceite de oliva</li>
+                <li>sal</li>
+                <li>pimienta</li>
             </ul>
-            <p><b>Etiquetas:</b></p>
-            <ul class="recipe_tags">
-                <li>Desayuno</li>
+            <p class="text-lg font-medium text-gray-700 mb-2"><b>Etiquetas:</b></p>
+            <ul class="recipe_tags flex flex-wrap gap-2 mb-4">
+                <li class="bg-blue-200 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">FISH</li>
+                <li class="bg-blue-200 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">VEGETABLES</li>
+                <li class="bg-blue-200 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">SALTY</li>
+                <li class="bg-green-200 text-green-800 text-sm font-semibold px-3 py-1 rounded-full">HEALTHY</li>
+                <li class="bg-green-200 text-green-800 text-sm font-semibold px-3 py-1 rounded-full">LOW_CARB</li>
+                <li class="bg-green-200 text-green-800 text-sm font-semibold px-3 py-1 rounded-full">HIGH_PROTEIN</li>
             </ul>
-            <p><b>Instrucciones:</b></p>
-            <p class="recipe_instructions">Mezclar todos los ingredientes en licuadora</p>
+            <p class="text-lg font-medium text-gray-700 mb-2"><b>Instrucciones:</b></p>
+            <p class="recipe_instructions text-gray-600 leading-relaxed">1. Sazonar el salmón. 2. Colocar espárragos en una bandeja. 3. Hornear hasta que el salmón esté cocido.</p>
+        </div>
+
+        <!-- Receta: Sopa de Lentejas Reconfortante (Silvy) -->
+        <div class="recipe bg-white p-6 rounded-lg shadow-md flex flex-col">
+            <p class="recipe_title text-2xl font-semibold text-gray-800 mb-3"><b>Sopa de Lentejas Reconfortante</b></p>
+            <p class="text-lg font-medium text-gray-700 mb-2"><b>Ingredientes:</b></p>
+            <ul class="recipe_ingredients list-disc list-inside text-gray-600 mb-4 flex-grow">
+                <li>lentejas</li>
+                <li>zanahoria</li>
+                <li>apio</li>
+                <li>cebolla</li>
+                <li>caldo de verduras</li>
+                <li>tomate</li>
+            </ul>
+            <p class="text-lg font-medium text-gray-700 mb-2"><b>Etiquetas:</b></p>
+            <ul class="recipe_tags flex flex-wrap gap-2 mb-4">
+                <li class="bg-blue-200 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">SOUP</li>
+                <li class="bg-blue-200 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">VEGETABLES</li>
+                <li class="bg-blue-200 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">SAVORY</li>
+                <li class="bg-green-200 text-green-800 text-sm font-semibold px-3 py-1 rounded-full">HEALTHY</li>
+                <li class="bg-green-200 text-green-800 text-sm font-semibold px-3 py-1 rounded-full">DINNER</li>
+            </ul>
+            <p class="text-lg font-medium text-gray-700 mb-2"><b>Instrucciones:</b></p>
+            <p class="recipe_instructions text-gray-600 leading-relaxed">1. Remojar las lentejas. 2. Cocinar con verduras (zanahoria, apio) y caldo de verduras. 3. Condimentar al gusto.</p>
         </div>
     </section>
+    <button id="new-recipe">
+        <i class="fa-solid fa-plus icon"></i>
+    </button>
 </body>
 </html>

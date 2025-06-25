@@ -40,4 +40,14 @@ public class DtoUserMapper {
         userEntity.setFavs(new ArrayList<RecipeEntity>());
         return userEntity;
     }
+
+    public static User entityToModel(UserEntity userEntity) {
+        User user = User.builder()
+                .username(userEntity.getUsername())
+                .password(userEntity.getPassword())
+                .userRol(UserRol.valueOf(userEntity.getRole()))
+                .build();
+        user.setFavRecipes(user.getFavRecipes());
+        return user;
+    }
 }
