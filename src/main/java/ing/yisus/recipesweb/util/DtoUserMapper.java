@@ -9,7 +9,6 @@ import ing.yisus.recipesweb.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @RequiredArgsConstructor
 public class DtoUserMapper {
