@@ -19,4 +19,13 @@ public class RecipeService {
     public Long getRecipeCount() {
         return recipeRepository.count();
     }
+
+    public void saveRecipe(RecipeEntity recipe) {
+        recipeRepository.save(recipe);
+    }
+
+    public RecipeEntity getRecipeById(Long id) {
+        return recipeRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Recipe not found with id: " + id));
+    }
 }

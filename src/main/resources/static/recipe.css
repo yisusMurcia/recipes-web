@@ -69,7 +69,7 @@ textarea:hover {
     border-color: #5e4530; /* Un color de borde más oscuro al pasar el ratón */
 }
 
-button {
+.submit_btn {
     border-radius: 5px;
     border: solid 2px #322318;
     background-color: #8e6740;
@@ -84,7 +84,7 @@ button {
 
 ::placeholder {
     color: #c5a975;
-    font-family: "Sour Gummy", sans-serif; 
+    font-family: "Sour Gummy", sans-serif;
 }
 
 fieldset {
@@ -134,7 +134,7 @@ fieldset input[type="checkbox"]{
     justify-content: space-between;
     align-items: stretch;
     width: 85%;
-    gap: 1.2rem;  
+    gap: 1.2rem;
 }
 
 @media (max-width: 768px) {

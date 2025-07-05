@@ -1,25 +1,28 @@
 package ing.yisus.recipesweb.controller;
 
+import ing.yisus.recipesweb.Dto.RecipeDto;
 import ing.yisus.recipesweb.Dto.UserDto;
 import ing.yisus.recipesweb.model.User;
+import ing.yisus.recipesweb.persistence.RecipeEntity;
 import ing.yisus.recipesweb.persistence.UserEntity;
+import ing.yisus.recipesweb.service.RecipeService;
 import ing.yisus.recipesweb.service.UserService;
 import ing.yisus.recipesweb.util.DtoUserMapper;
+import ing.yisus.recipesweb.util.RecipeMapper;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
 @RequiredArgsConstructor
 public class Control {
     private final UserService userService;
+    private final RecipeService recipeService;
+    private final RecipeMapper recipeMapper;
 
     @GetMapping("sign-up")
     public String signUp(Model model) {
@@ -59,9 +62,19 @@ public class Control {
     }
 
     @GetMapping("recipe/{id}")
-    public String recipe(@PathVariable long id) {
-
+    public String recipe(@PathVariable long id, RedirectAttributes redirectAttributes) {
+        if(id >= recipeService.getRecipeCount()){
+            id = recipeService.getRecipeCount();
+        }
+        redirectAttributes.addFlashAttribute("id", id);
         return "recipe";
     }
 
+    @PostMapping("create_recipe")
+    public String createRecipe(@ModelAttribute RecipeDto recipeDto) {
+        RecipeEntity recipeEntity = recipeMapper.toEntity(recipeDto);
+        recipeService.saveRecipe(recipeEntity);
+        return "index";
+    }
 }
+

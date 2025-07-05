@@ -2,6 +2,8 @@ package ing.yisus.recipesweb.model;
 
 import lombok.*;
 
+import java.util.ArrayList;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -9,9 +11,8 @@ import lombok.*;
 public class Recipe {
     private int numOfLikes;
     private String title;
-    private String description;
     private String[] ingredients;
     private String instructions;
-    private FoodIntention[] foodIntentions;
-    private FoodType[] foodTypes;
+    private ArrayList<FoodIntention> foodIntentions;
+    private ArrayList<FoodType> foodTypes;
 }

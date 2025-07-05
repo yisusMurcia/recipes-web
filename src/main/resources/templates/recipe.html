@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear receta</title>
-    <link rel="stylesheet" href="./recipe.css">
-    <link rel="shortcut icon" href="icon.png" type="image/x-icon">
+    <title>Receta</title>
+    <link rel="stylesheet" href="/recipe.css">
+    <link rel="shortcut icon" href="/icon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <form action="create" class="recipe_form">
+    <form action="create_recipe" method="POST"  class="recipe_form" th:object="${RecipeDto}">
 
         <h1>¡Imagina, crea y guarda para disfrutar!</h1>
 
@@ -104,7 +104,7 @@
                 <label for="typeUmami">Umami</label>
 
             </fieldset>
-            
+
         </section>
 
         <label for="instructions">Instrucciones:</label>
