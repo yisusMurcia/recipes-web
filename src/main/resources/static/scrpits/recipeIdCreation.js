@@ -18,8 +18,6 @@ const createRecipe = async () => {
         if (response.ok) {
             const recipeId = await response.json();
             window.location.href = `recipe/` + recipeId;
-        } else {
-            console.error("Error al obtener el ID de la receta", response.status);
         }
     } catch (error) {
         console.error("Error en la solicitud: ", error);

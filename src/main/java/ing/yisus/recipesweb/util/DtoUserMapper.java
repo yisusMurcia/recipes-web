@@ -29,6 +29,20 @@ public class DtoUserMapper {
         return user;
     }
 
+    public static User DtoToModel(UserDto userDto, String role) {
+        User user = User.builder()
+                .username(userDto.getUsername())
+                .password(userDto.getPassword())
+                .build();
+        if(userDto.getUserRol().equals("admin")) {
+            user.setUserRol(UserRol.ADMIN);
+        } else{
+            user.setUserRol(UserRol.USER);
+        }
+
+        return user;
+    }
+
     public static UserEntity DtoToEntity(UserDto userDto, Long id) {
         UserEntity userEntity = new UserEntity();
         userEntity.setUsername(userDto.getUsername());
@@ -41,12 +55,10 @@ public class DtoUserMapper {
     }
 
     public static User entityToModel(UserEntity userEntity) {
-        User user = User.builder()
+        return User.builder()
                 .username(userEntity.getUsername())
                 .password(userEntity.getPassword())
                 .userRol(UserRol.valueOf(userEntity.getRole()))
                 .build();
-        user.setFavRecipes(user.getFavRecipes());
-        return user;
     }
 }

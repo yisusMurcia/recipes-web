@@ -11,7 +11,6 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class RecipeMapper {
-    private final RecipeService recipeService;
     public RecipeEntity toEntity(RecipeDto recipeDto) {
         return RecipeEntity.builder()
                 .id(recipeDto.getId())
@@ -32,13 +31,5 @@ public class RecipeMapper {
                 .foodIntentions(List.of(recipe.getFoodIntentions().split(",")))
                 .foodTypes(List.of(recipe.getFoodTypes().split(",")))
                 .build();
-    }
-
-    public RecipeDto idToDto(Long id) {
-        if (id >= recipeService.getRecipeCount() || id < 0) {
-            return RecipeDto.builder().id(id).build();
-        } else {
-            return toDto(recipeService.getRecipeById(id));
-        }
     }
 }

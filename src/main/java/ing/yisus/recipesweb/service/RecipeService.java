@@ -1,8 +1,11 @@
 package ing.yisus.recipesweb.service;
 
+import ing.yisus.recipesweb.model.Recipe;
 import ing.yisus.recipesweb.persistence.RecipeEntity;
 import ing.yisus.recipesweb.repository.RecipeRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class RecipeService {
@@ -27,5 +30,13 @@ public class RecipeService {
     public RecipeEntity getRecipeById(Long id) {
         return recipeRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Recipe not found with id: " + id));
+    }
+
+    public List<RecipeEntity> getAllRecipes() {
+        return recipeRepository.findAll();
+    }
+
+    public List<RecipeEntity> getRecipesByUserId(Long userId) {
+        return recipeRepository.findAllByUserId(userId);
     }
 }

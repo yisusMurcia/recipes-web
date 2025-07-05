@@ -34,12 +34,11 @@ public class Control {
     }
 
     @PostMapping("register")
-    public String register(@RequestParam String username, @RequestParam String password, @RequestParam String userRol, @RequestParam(required = false) String adminPassword, Model model, HttpSession session) {
-        UserDto userDto = new UserDto(username, password, userRol, null, null, adminPassword);
+    public String register(@RequestParam String username, @RequestParam String password, @RequestParam String userRol, @RequestParam(required = false) String adminPassword, Model model) {
+        UserDto userDto = new UserDto(username, password, userRol, adminPassword);
         User user = DtoUserMapper.DtoToModel(userDto);
         UserEntity entity = DtoUserMapper.DtoToEntity(userDto, userService.getUserCount());
         if(userService.registerUser(entity)){//Check if user is new
-            session.setAttribute("user", user);
             model.addAttribute("username", user.getUsername());
             return "index";
         }else{
