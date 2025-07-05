@@ -14,19 +14,19 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "*")
 @RequiredArgsConstructor
-@RequestMapping("/api/recipes")
+@RequestMapping("/api/")
 
 public class RestRecipeControl {
     private final RecipeService recipeService;
     private final RecipeMapper recipeMapper;
     private final UserService userService;
 
-    @GetMapping("/nextRecipeId")
+    @GetMapping("nextRecipeId")
     public ResponseEntity<Long> getNextRecipeId() {
         return ResponseEntity.ok(recipeService.getRecipeCount());
     }
 
-    @GetMapping("/recipes")
+    @GetMapping("recipes")
     public ResponseEntity<List<RecipeDto>> getAllRecipes() {
         List<RecipeDto> recipes = recipeService.getAllRecipes().stream()
                 .map(recipeMapper::toDto).toList();
@@ -49,7 +49,7 @@ public class RestRecipeControl {
         return ResponseEntity.ok(favsRecipes);
     }
 
-    @GetMapping("/user-recipes/{userId}")
+    @GetMapping("user-recipes/{userId}")
     public ResponseEntity<List<RecipeDto>> getUserRecipes(@PathVariable Long userId) {
         List<RecipeDto> userRecipes = recipeService.getRecipesByUserId(userId).stream()
                 .map(recipeMapper::toDto).toList();

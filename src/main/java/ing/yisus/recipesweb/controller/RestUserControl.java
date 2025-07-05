@@ -12,19 +12,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@Data
 @RequiredArgsConstructor
+@RequestMapping("/api/")
 public class RestUserControl {
     private final UserService userService;
     @Value("${app.admin.password}")
     private String adminPassword;
 
-    @GetMapping("/user")//For validate if user is logged in, it returns the username, if is not logged, return null
+    @GetMapping("user")//For validate if user is logged in, it returns the username, if is not logged, return null
     public Object getUser(HttpSession session) {
         return session.getAttribute("userName");
     }
 
-    @GetMapping("/validateUser")
+    @GetMapping("validateUser")
     public ResponseEntity<?> validateUser(@RequestParam UserDto userDto) {
         UserEntity userFound = userService.findUserByUsernameAndPassword(userDto.getUsername(), userDto.getPassword());
         if(userFound != null){
@@ -34,7 +34,7 @@ public class RestUserControl {
         }
     }
 
-    @PostMapping("/create-user")
+    @PostMapping("create-user")
     public ResponseEntity<?> createUser(@RequestBody UserDto userDto) {
         //Validate user, can´t exist some with same username
         if(userService.findUserByUsername(userDto.getUsername()) != null){
@@ -52,7 +52,7 @@ public class RestUserControl {
 
     }
 
-    @GetMapping("/userId/{username}")
+    @GetMapping("userId/{username}")
     public ResponseEntity<Long> getUserIdByUsername(@PathVariable String username) {
         UserEntity userEntity = userService.findUserByUsername(username);
         if (userEntity != null) {
