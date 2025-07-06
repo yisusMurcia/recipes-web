@@ -74,13 +74,18 @@ a {
     border-radius: 0.5rem;
 }
 
-button{
+button {
+    all: unset; /* reinicia todos los estilos heredados del navegador */
     background-color: #d6c59b;
     padding: 0.5rem;
-    border: none;
+    border: solid 2px #3e2c1f;
     border-radius: 10px;
+    color: #322318;
+    font-family: "Sour Gummy", sans-serif;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
 }
-
 button:hover {
     background-color: #c5a975;
     color: #322318;
@@ -92,6 +97,7 @@ button:active {
     border: 3px solid #322318;
     padding: calc(0.5rem - 5px);
 }
+
 #new-recipe {
     position: fixed;
     bottom: 10px;
