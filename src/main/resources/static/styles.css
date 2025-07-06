@@ -12,7 +12,6 @@ header {
 }
 
 h1,h2,h3{
-    font-family: "Sour Gummy", sans-serif;
     color: #322318;
     font-family: "Bubblegum Sans", sans-serif;
 }
@@ -55,7 +54,7 @@ input{
     background-color: #f3efe1;
     font-family: "Sour Gummy", sans-serif;;
 }
-
+/*
 input[type="submit"] {
     background-color: #c5a975;
     color: #322318;
@@ -63,6 +62,7 @@ input[type="submit"] {
     cursor: pointer;
     padding: 0.5rem 1rem;
 }
+ */
 
 a:hover {
     color: #c5a975;
