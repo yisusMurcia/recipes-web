@@ -3,8 +3,13 @@ newRecipeBtn.addEventListener("click", () => {
     userLogged? createRecipe(): alertNotLogging();
 })
 
-const header = document.querySelector("header");
-const userLogged = !header.textContent.includes(null);
+
+
+const header = document.querySelector("h1");
+username = sessionStorage.getItem("username");
+const userLogged = username !== null && username !== "";
+
+header.innerText+= `, ${userLogged? username: "invitado"}`;
 
 const alertNotLogging = () => {
     alert("Debes estar logueado para crear una receta")
