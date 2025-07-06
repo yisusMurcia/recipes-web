@@ -23,8 +23,10 @@ const validateUser = async () => {
             })
         })
         if (response.ok) {
-            const user = await response.json();
-            console.log(user);
+            const user = await response.json().then(()=>
+            {
+                    window.location.href = "index";
+            });
         } else {
             alert("Usuario o contraseña incorrecto");
         }
