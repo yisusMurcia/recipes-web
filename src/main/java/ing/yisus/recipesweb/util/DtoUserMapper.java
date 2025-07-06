@@ -21,9 +21,9 @@ public class DtoUserMapper {
         //Admin password
         String ADMIN_PASSWORD = "020admin81";
         if(userDto.getUserRol().equals("admin") && userDto.getAdminPassword() != null && userDto.getAdminPassword().equals(ADMIN_PASSWORD)) {
-            user.setUserRol(UserRol.ADMIN);
+            user.setUserRol(UserRol.ADMIN.toString());
         } else{
-            user.setUserRol(UserRol.USER);
+            user.setUserRol(UserRol.USER.toString());
         }
 
         return user;
@@ -35,9 +35,9 @@ public class DtoUserMapper {
                 .password(userDto.getPassword())
                 .build();
         if(userDto.getUserRol().equals("admin")) {
-            user.setUserRol(UserRol.ADMIN);
+            user.setUserRol(UserRol.ADMIN.toString());
         } else{
-            user.setUserRol(UserRol.USER);
+            user.setUserRol(UserRol.USER.toString());
         }
 
         return user;
@@ -58,7 +58,7 @@ public class DtoUserMapper {
         return User.builder()
                 .username(userEntity.getUsername())
                 .password(userEntity.getPassword())
-                .userRol(UserRol.valueOf(userEntity.getRole()))
+                .userRol(userEntity.getRole())
                 .build();
     }
 }

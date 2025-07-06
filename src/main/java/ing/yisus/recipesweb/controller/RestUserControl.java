@@ -5,7 +5,6 @@ import ing.yisus.recipesweb.persistence.UserEntity;
 import ing.yisus.recipesweb.service.UserService;
 import ing.yisus.recipesweb.util.DtoUserMapper;
 import jakarta.servlet.http.HttpSession;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/")
 public class RestUserControl {
     private final UserService userService;
@@ -24,8 +24,8 @@ public class RestUserControl {
         return session.getAttribute("userName");
     }
 
-    @GetMapping("validateUser")
-    public ResponseEntity<?> validateUser(@RequestParam UserDto userDto) {
+    @PostMapping("validate-user")
+    public ResponseEntity<?> validateUser(@RequestBody UserDto userDto) {
         UserEntity userFound = userService.findUserByUsernameAndPassword(userDto.getUsername(), userDto.getPassword());
         if(userFound != null){
             return ResponseEntity.ok(userFound);
