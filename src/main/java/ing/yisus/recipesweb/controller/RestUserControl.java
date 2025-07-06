@@ -19,11 +19,6 @@ public class RestUserControl {
     @Value("${app.admin.password}")
     private String adminPassword;
 
-    @GetMapping("user")//For validate if user is logged in, it returns the username, if is not logged, return null
-    public Object getUser(HttpSession session) {
-        return session.getAttribute("userName");
-    }
-
     @PostMapping("validate-user")
     public ResponseEntity<?> validateUser(@RequestBody UserDto userDto) {
         UserEntity userFound = userService.findUserByUsernameAndPassword(userDto.getUsername(), userDto.getPassword());

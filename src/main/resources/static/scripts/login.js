@@ -4,7 +4,6 @@ const usernameFiled = document.querySelector('#username');
 const passwordFiled = document.querySelector('#password');
 
 loginBtn.addEventListener('click', () => {
-
     validateUser();
 });
 
@@ -23,13 +22,15 @@ const validateUser = async () => {
             })
         })
         if (response.ok) {
-            const user = await response.json().then(()=>
+            const user = await response.json().then(user=>
             {
-                    window.location.href = "index";
+                sessionStorage.username = user.username;
+                window.location.href = "index";
             });
         } else {
             alert("Usuario o contraseña incorrecto");
         }
     } catch (e) {
+        console.log(e)
     }
 };
