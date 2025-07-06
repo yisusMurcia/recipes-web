@@ -3,8 +3,8 @@ const loginBtn = document.querySelector('#login-btn');
 const usernameFiled = document.querySelector('#username');
 const passwordFiled = document.querySelector('#password');
 
-loginBtn.addEventListener('click', (e) => {
-    e.preventDefault();
+loginBtn.addEventListener('click', () => {
+
     validateUser();
 });
 
@@ -23,8 +23,10 @@ const validateUser = async () => {
             })
         })
         if (response.ok) {
-            const user = await response.json();
-            console.log(user);
+            const user = await response.json().then(()=>
+            {
+                    window.location.href = "index";
+            });
         } else {
             alert("Usuario o contraseña incorrecto");
         }

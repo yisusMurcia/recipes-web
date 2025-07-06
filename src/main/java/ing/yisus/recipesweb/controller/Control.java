@@ -75,5 +75,10 @@ public class Control {
         recipeService.saveRecipe(recipeEntity);
         return "index";
     }
+
+    @GetMapping("index")
+    public String index() {
+        return "index";
+    }
 }
 
