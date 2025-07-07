@@ -1,6 +1,5 @@
 package ing.yisus.recipesweb.service;
 
-import ing.yisus.recipesweb.model.Recipe;
 import ing.yisus.recipesweb.persistence.RecipeEntity;
 import ing.yisus.recipesweb.repository.RecipeRepository;
 import org.springframework.stereotype.Service;
@@ -23,8 +22,9 @@ public class RecipeService {
         return recipeRepository.count();
     }
 
-    public void saveRecipe(RecipeEntity recipe) {
+    public RecipeEntity saveRecipe(RecipeEntity recipe) {
         recipeRepository.save(recipe);
+        return recipe;
     }
 
     public RecipeEntity getRecipeById(Long id) {

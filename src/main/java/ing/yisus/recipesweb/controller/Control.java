@@ -69,13 +69,6 @@ public class Control {
         return "recipe";
     }
 
-    @PostMapping("create_recipe")
-    public String createRecipe(@ModelAttribute RecipeDto recipeDto) {
-        RecipeEntity recipeEntity = recipeMapper.toEntity(recipeDto);
-        recipeService.saveRecipe(recipeEntity);
-        return "index";
-    }
-
     @GetMapping("index")
     public String index() {
         return "index";

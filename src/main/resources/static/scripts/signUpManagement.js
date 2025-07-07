@@ -31,9 +31,8 @@ const signUp = async () => {
 
     if (response.ok) {
         const user = await response.json().then(user=>{
-            sessionStorage.user = user; // Store the username in session storage
-            alert(`User created successfully: ${user.username}`);
-            location.href = 'index.html'; // Redirect to index page after successful sign-up
+            sessionStorage.user = user.username; // Store the username in session storage
+            location.href = 'index'; // Redirect to index page after successful sign-up
         });
 
     } else {

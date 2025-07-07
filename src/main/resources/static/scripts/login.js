@@ -25,7 +25,7 @@ const validateUser = async () => {
         if (response.ok) {
             const user = await response.json().then(user=>
             {
-                sessionStorage.user = user;
+                sessionStorage.user = usernameFiled.value;
                 location.href = "index";
             });
         } else {

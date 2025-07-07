@@ -4,12 +4,11 @@ newRecipeBtn.addEventListener("click", () => {
 })
 
 
-
 const header = document.querySelector("h1");
-user = sessionStorage.getItem("user");
-const userLogged = user.username !== null && user.username !== "";
+let username = sessionStorage.user;
+const userLogged = username !== null && username!== "";
 
-header.innerText+= `, ${userLogged? user.username: "invitado"}`;
+header.innerText+= `, ${userLogged? username: "invitado"}`;
 
 const alertNotLogging = () => {
     alert("Debes estar logueado para crear una receta")
@@ -21,7 +20,7 @@ const createRecipe = async () => {
     try {
         const response = await fetch("/api/recipes/nextRecipeId");
         if (response.ok) {
-            const recipeId = await response.json();
+            const recipeId = await response.json().then(recipeId => sessionStorage.recipeId = recipeId);
             window.location.href = `recipe/` + recipeId;
         }
     } catch (error) {

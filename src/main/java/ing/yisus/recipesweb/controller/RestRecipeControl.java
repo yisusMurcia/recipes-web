@@ -59,4 +59,13 @@ public class RestRecipeControl {
         }
         return ResponseEntity.ok(userRecipes);
     }
+
+    @PostMapping("update")
+        public ResponseEntity<RecipeDto> update(@RequestBody RecipeDto recipeDto) {
+        if (recipeDto.getId() == null || recipeDto.getId() < 0) {
+            return ResponseEntity.badRequest().body(null);
+        }
+        RecipeDto updatedRecipe = recipeMapper.toDto(recipeService.saveRecipe(recipeMapper.toEntity(recipeDto, userService.findUserById(recipeDto.getUserId()))));
+        return ResponseEntity.ok(updatedRecipe);
+    }
 }

@@ -2,7 +2,9 @@ package ing.yisus.recipesweb.util;
 
 import ing.yisus.recipesweb.Dto.RecipeDto;
 import ing.yisus.recipesweb.persistence.RecipeEntity;
+import ing.yisus.recipesweb.persistence.UserEntity;
 import ing.yisus.recipesweb.service.RecipeService;
+import ing.yisus.recipesweb.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +13,7 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class RecipeMapper {
-    public RecipeEntity toEntity(RecipeDto recipeDto) {
+    public RecipeEntity toEntity(RecipeDto recipeDto, UserEntity user) {
         return RecipeEntity.builder()
                 .id(recipeDto.getId())
                 .title(recipeDto.getTitle())
@@ -19,6 +21,7 @@ public class RecipeMapper {
                 .instructions(recipeDto.getInstructions())
                 .foodIntentions(String.join(",", recipeDto.getFoodIntentions()).toLowerCase())
                 .foodTypes(String.join(",", recipeDto.getFoodTypes()).toLowerCase())
+                .user(user)
                 .build();
     }
 
