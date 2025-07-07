@@ -15,7 +15,7 @@
     <header>
         <h1>Unete y se parte de la familia</h1>
     </header>
-    <form action="register" method="post">
+    <form method="post">
         <span class="error-message" th:if="${errorMessage}" th:text="${errorMessage}"></span>
         <label for="username">Tu nombre de usuario</label>
         <input type="text" id="username" name="username" required>
@@ -30,11 +30,10 @@
         </select>
         <label for="adminPassword">Tu clave de administrador</label>
         <input type="password" id="adminPassword" name="adminPassword"  required disabled>
-
-        <input type="submit" value="Registrarme">
+        <button id="sign-up-btn">Registrarme</button>
         
         <span>Ya tienes cuenta, no hay problema, <a href="login">Inicia sesión aquí</a></span>
     </form>
 </body>
-<script src="/scripts/signUpLogic.js"></script>
+<script src="/scripts/signUpManagement.js"></script>
 </html>

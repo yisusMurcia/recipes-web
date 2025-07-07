@@ -16,4 +16,5 @@ public class RecipeDto {
     private String instructions;
     private List<String> foodIntentions;
     private List<String> foodTypes;
+    private Long userId;
 }

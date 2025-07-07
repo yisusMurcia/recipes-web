@@ -3,13 +3,14 @@ const loginBtn = document.querySelector('#login-btn');
 const usernameFiled = document.querySelector('#username');
 const passwordFiled = document.querySelector('#password');
 
-loginBtn.addEventListener('click', () => {
+loginBtn.addEventListener('click', (e) => {
+    e.preventDefault();
     validateUser();
 });
 
 const validateUser = async () => {
     try {
-        const response = await fetch("/api/validate-user", {
+        const response = await fetch("/api/user/validate-user", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -24,8 +25,8 @@ const validateUser = async () => {
         if (response.ok) {
             const user = await response.json().then(user=>
             {
-                sessionStorage.username = user.username;
-                window.location.href = "index";
+                sessionStorage.user = user;
+                location.href = "index";
             });
         } else {
             alert("Usuario o contraseña incorrecto");

@@ -4,7 +4,6 @@ import ing.yisus.recipesweb.Dto.UserDto;
 import ing.yisus.recipesweb.persistence.UserEntity;
 import ing.yisus.recipesweb.service.UserService;
 import ing.yisus.recipesweb.util.DtoUserMapper;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/")
+@RequestMapping("/api/user/")
 public class RestUserControl {
     private final UserService userService;
     @Value("${app.admin.password}")
