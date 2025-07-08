@@ -97,6 +97,9 @@ button:active {
     padding: calc(0.5rem - 5px);
 }
 
+#edit-recipe {
+    margin-top: 2rem;
+}
 #new-recipe {
     position: fixed;
     bottom: 10px;
