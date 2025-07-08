@@ -26,7 +26,7 @@ public class RestRecipeControl {
         return ResponseEntity.ok(recipeService.getRecipeCount());
     }
 
-    @GetMapping("recipes")
+    @GetMapping("all")
     public ResponseEntity<List<RecipeDto>> getAllRecipes() {
         List<RecipeDto> recipes = recipeService.getAllRecipes().stream()
                 .map(recipeMapper::toDto).toList();
