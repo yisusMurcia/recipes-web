@@ -3,8 +3,6 @@ package ing.yisus.recipesweb.util;
 import ing.yisus.recipesweb.Dto.RecipeDto;
 import ing.yisus.recipesweb.persistence.RecipeEntity;
 import ing.yisus.recipesweb.persistence.UserEntity;
-import ing.yisus.recipesweb.service.RecipeService;
-import ing.yisus.recipesweb.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
