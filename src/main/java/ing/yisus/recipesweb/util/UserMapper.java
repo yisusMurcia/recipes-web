@@ -1,17 +1,23 @@
 package ing.yisus.recipesweb.util;
 
+import ing.yisus.recipesweb.Dto.LoginDto;
 import ing.yisus.recipesweb.Dto.UserDto;
 import ing.yisus.recipesweb.model.User;
 import ing.yisus.recipesweb.model.UserRol;
 import ing.yisus.recipesweb.persistence.RecipeEntity;
 import ing.yisus.recipesweb.persistence.UserEntity;
-import ing.yisus.recipesweb.repository.UserRepository;
+import ing.yisus.recipesweb.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
+@Component
 @RequiredArgsConstructor
-public class DtoUserMapper {
+public class UserMapper {
+
+    private final UserService userService;
 
     public static User DtoToModel(UserDto userDto) {
         User user = User.builder()
@@ -21,20 +27,6 @@ public class DtoUserMapper {
         //Admin password
         String ADMIN_PASSWORD = "020admin81";
         if(userDto.getUserRol().equals("admin") && userDto.getAdminPassword() != null && userDto.getAdminPassword().equals(ADMIN_PASSWORD)) {
-            user.setUserRol(UserRol.ADMIN.toString());
-        } else{
-            user.setUserRol(UserRol.USER.toString());
-        }
-
-        return user;
-    }
-
-    public static User DtoToModel(UserDto userDto, String role) {
-        User user = User.builder()
-                .username(userDto.getUsername())
-                .password(userDto.getPassword())
-                .build();
-        if(userDto.getUserRol().equals("admin")) {
             user.setUserRol(UserRol.ADMIN.toString());
         } else{
             user.setUserRol(UserRol.USER.toString());
@@ -60,5 +52,18 @@ public class DtoUserMapper {
                 .password(userEntity.getPassword())
                 .userRol(userEntity.getRole())
                 .build();
+    }
+
+    public UserDto entityToDto(UserEntity userEntity) {
+        return UserDto.builder()
+                .id(userEntity.getId())
+                .username(userEntity.getUsername())
+                .password(userEntity.getPassword())
+                .userRol(userEntity.getRole())
+                .build();
+    }
+
+    public UserEntity userLoginToEntity(LoginDto user) {
+        return userService.findUserByUsernameAndPassword(user.getUsername(), user.getPassword());
     }
 }

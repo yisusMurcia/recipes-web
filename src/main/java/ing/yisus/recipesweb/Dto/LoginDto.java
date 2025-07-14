@@ -7,10 +7,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 @Builder
-public class UserDto {
-    private Long id;
+public class LoginDto {
     private String username;
     private String password;
-    private String userRol;
-    private String adminPassword;//Password for validating admin permissions
 }

@@ -2,13 +2,10 @@ package ing.yisus.recipesweb.service;
 
 
 import ing.yisus.recipesweb.model.User;
-import ing.yisus.recipesweb.persistence.RecipeEntity;
 import ing.yisus.recipesweb.persistence.UserEntity;
 import ing.yisus.recipesweb.repository.UserRepository;
-import ing.yisus.recipesweb.util.DtoUserMapper;
+import ing.yisus.recipesweb.util.UserMapper;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class UserService {
@@ -38,7 +35,7 @@ public class UserService {
         }
         return userRepository.findByUsername(username)
                 .filter(user -> user.getPassword().equals(password))
-                .map(DtoUserMapper::entityToModel) // Convert UserEntity to User model)
+                .map(UserMapper::entityToModel) // Convert UserEntity to User model)
                 .orElse(null); // Return null if no matching user found
     }
 

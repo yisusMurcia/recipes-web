@@ -1,13 +1,11 @@
 package ing.yisus.recipesweb.controller;
 
-import ing.yisus.recipesweb.Dto.RecipeDto;
 import ing.yisus.recipesweb.Dto.UserDto;
 import ing.yisus.recipesweb.model.User;
-import ing.yisus.recipesweb.persistence.RecipeEntity;
 import ing.yisus.recipesweb.persistence.UserEntity;
 import ing.yisus.recipesweb.service.RecipeService;
 import ing.yisus.recipesweb.service.UserService;
-import ing.yisus.recipesweb.util.DtoUserMapper;
+import ing.yisus.recipesweb.util.UserMapper;
 import ing.yisus.recipesweb.util.RecipeMapper;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -36,8 +34,8 @@ public class Control {
     @PostMapping("register")
     public String register(@RequestParam String username, @RequestParam String password, @RequestParam String userRol, @RequestParam(required = false) String adminPassword, Model model) {
         UserDto userDto = new UserDto(username, password, userRol, adminPassword);
-        User user = DtoUserMapper.DtoToModel(userDto);
-        UserEntity entity = DtoUserMapper.DtoToEntity(userDto, userService.getUserCount());
+        User user = UserMapper.DtoToModel(userDto);
+        UserEntity entity = UserMapper.DtoToEntity(userDto, userService.getUserCount());
         if(userService.registerUser(entity)){//Check if user is new
             model.addAttribute("username", user.getUsername());
             return "index";
