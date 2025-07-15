@@ -68,4 +68,13 @@ public class RestRecipeControl {
         RecipeDto updatedRecipe = recipeMapper.toDto(recipeService.saveRecipe(recipeMapper.toEntity(recipeDto, userService.findUserById(recipeDto.getUserId()))));
         return ResponseEntity.ok(updatedRecipe);
     }
+
+    @GetMapping("{id}")
+    public ResponseEntity<RecipeDto> getRecipeById(@PathVariable Long id) {
+        if (id < 0 || id >= recipeService.getRecipeCount()) {
+            return ResponseEntity.notFound().build();
+        }
+        RecipeDto recipe = recipeMapper.toDto(recipeService.getRecipeById(id));
+        return ResponseEntity.ok(recipe);
+    }
 }

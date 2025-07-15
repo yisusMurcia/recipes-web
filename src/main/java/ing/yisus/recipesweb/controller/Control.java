@@ -33,7 +33,7 @@ public class Control {
 
     @PostMapping("register")
     public String register(@RequestParam String username, @RequestParam String password, @RequestParam String userRol, @RequestParam(required = false) String adminPassword, Model model) {
-        UserDto userDto = new UserDto(username, password, userRol, adminPassword);
+        UserDto userDto = new UserDto(null, username, password, userRol, adminPassword);
         User user = UserMapper.DtoToModel(userDto);
         UserEntity entity = UserMapper.DtoToEntity(userDto, userService.getUserCount());
         if(userService.registerUser(entity)){//Check if user is new

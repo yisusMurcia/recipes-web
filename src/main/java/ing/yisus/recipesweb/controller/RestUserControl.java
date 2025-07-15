@@ -32,11 +32,11 @@ public class RestUserControl {
 
     @PostMapping("create-user")
     public ResponseEntity<?> createUser(@RequestBody UserDto userDto) {
-        //Validate user, can´t exist some with same username
+        //Validate user, it can´t exist some with same username
         if(userService.findUserByUsername(userDto.getUsername()) != null){
             return ResponseEntity.badRequest().body("Username already exists");
         }
-        //Validate admin password if user is admin
+        //Validate admin password if the user is admin
         if(userDto.getUserRol().equalsIgnoreCase("admin")) {
             if(userDto.getAdminPassword() == null || !userDto.getAdminPassword().equals(adminPassword)) {
                 return ResponseEntity.badRequest().body("Invalid admin password");
