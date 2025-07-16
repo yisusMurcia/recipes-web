@@ -4,7 +4,6 @@ import ing.yisus.recipesweb.Dto.LoginDto;
 import ing.yisus.recipesweb.Dto.RegisterDto;
 import ing.yisus.recipesweb.Dto.UserDto;
 import ing.yisus.recipesweb.model.User;
-import ing.yisus.recipesweb.model.UserRol;
 import ing.yisus.recipesweb.persistence.RecipeEntity;
 import ing.yisus.recipesweb.persistence.UserEntity;
 import ing.yisus.recipesweb.service.UserService;
@@ -12,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
