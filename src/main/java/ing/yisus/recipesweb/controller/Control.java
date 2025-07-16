@@ -31,19 +31,6 @@ public class Control {
         return "login";
     }
 
-    @PostMapping("register")
-    public String register(@RequestParam String username, @RequestParam String password, @RequestParam String userRol, @RequestParam(required = false) String adminPassword, Model model) {
-        UserDto userDto = new UserDto(null, username, password, userRol, adminPassword);
-        User user = UserMapper.DtoToModel(userDto);
-        UserEntity entity = UserMapper.DtoToEntity(userDto, userService.getUserCount());
-        if(userService.registerUser(entity)){//Check if user is new
-            model.addAttribute("username", user.getUsername());
-            return "index";
-        }else{
-            model.addAttribute("errorMessage", "Nombre de usuario en uso");
-            return "sign-up";
-        }
-    }
 
     @GetMapping("loginUser")
     public String loginUser(@RequestParam String username, @RequestParam String password, Model model, HttpSession session) {

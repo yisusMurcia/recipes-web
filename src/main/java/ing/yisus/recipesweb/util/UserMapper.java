@@ -1,6 +1,7 @@
 package ing.yisus.recipesweb.util;
 
 import ing.yisus.recipesweb.Dto.LoginDto;
+import ing.yisus.recipesweb.Dto.RegisterDto;
 import ing.yisus.recipesweb.Dto.UserDto;
 import ing.yisus.recipesweb.model.User;
 import ing.yisus.recipesweb.model.UserRol;
@@ -18,22 +19,6 @@ import java.util.Optional;
 public class UserMapper {
 
     private final UserService userService;
-
-    public static User DtoToModel(UserDto userDto) {
-        User user = User.builder()
-                .username(userDto.getUsername())
-                .password(userDto.getPassword())
-                .build();
-        //Admin password
-        String ADMIN_PASSWORD = "020admin81";
-        if(userDto.getUserRol().equals("admin") && userDto.getAdminPassword() != null && userDto.getAdminPassword().equals(ADMIN_PASSWORD)) {
-            user.setUserRol(UserRol.ADMIN.toString());
-        } else{
-            user.setUserRol(UserRol.USER.toString());
-        }
-
-        return user;
-    }
 
     public static UserEntity DtoToEntity(UserDto userDto, Long id) {
         UserEntity userEntity = new UserEntity();
@@ -65,5 +50,14 @@ public class UserMapper {
 
     public UserEntity userLoginToEntity(LoginDto user) {
         return userService.findUserByUsernameAndPassword(user.getUsername(), user.getPassword());
+    }
+
+    public UserEntity registerDtoToEntity(RegisterDto registerDto) {
+        return UserEntity.builder()
+                .username(registerDto.getUsername())
+                .password(registerDto.getPassword())
+                .role(registerDto.getUserRol().toUpperCase())
+                .favs(new ArrayList<>())
+                .build();
     }
 }
