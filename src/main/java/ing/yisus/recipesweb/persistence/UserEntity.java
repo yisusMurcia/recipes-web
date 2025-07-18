@@ -17,7 +17,6 @@ import java.util.List;
 @AllArgsConstructor
 public class UserEntity implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     @Column(name = "name")
     private String username;

@@ -52,6 +52,7 @@ public class UserMapper {
 
     public UserEntity registerDtoToEntity(RegisterDto registerDto) {
         return UserEntity.builder()
+                .id(userService.getUserCount())
                 .username(registerDto.getUsername())
                 .password(registerDto.getPassword())
                 .role(registerDto.getUserRol().toUpperCase())
