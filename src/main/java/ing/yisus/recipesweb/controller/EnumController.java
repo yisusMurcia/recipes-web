@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/enums")
+@RequestMapping("/api/")
 public class EnumController {
-    @GetMapping("/food-intentions")
+    @GetMapping("food-intentions")
     public FoodIntention[] getFoodIntentions() {
         return FoodIntention.values();
     }
 
-    @GetMapping("/food-types")
+    @GetMapping("food-types")
     public FoodType[] getFoodTypes() {
         return FoodType.values();
     }
