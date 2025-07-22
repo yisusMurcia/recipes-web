@@ -6,6 +6,7 @@ import ing.yisus.recipesweb.service.RecipeService;
 import ing.yisus.recipesweb.service.UserService;
 import ing.yisus.recipesweb.util.RecipeMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,9 +28,10 @@ public class RestRecipeControl {
     }
 
     @GetMapping("all")
-    public ResponseEntity<List<RecipeDto>> getAllRecipes() {
-        List<RecipeDto> recipes = recipeService.getAllRecipes().stream()
+    public ResponseEntity<List<RecipeDto>> getAllRecipes(Pageable pageable) {
+        List<RecipeDto> recipes = recipeService.getAllRecipes(pageable).stream()
                 .map(recipeMapper::toDto).toList();
+        System.out.println(recipes);
         if (recipes.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
@@ -37,7 +39,7 @@ public class RestRecipeControl {
     }
 
     @GetMapping("favs-recipes/{userId}")
-    public ResponseEntity<List<RecipeDto>> getFavsRecipes(@PathVariable Long userId) {
+    public ResponseEntity<List<RecipeDto>> getFavsRecipes(@PathVariable Long userId, Pageable pageable) {
         UserEntity user= userService.findUserById(userId);
 
         List<RecipeDto> favsRecipes = user.getFavs().stream()

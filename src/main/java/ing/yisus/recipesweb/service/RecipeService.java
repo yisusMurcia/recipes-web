@@ -2,8 +2,9 @@ package ing.yisus.recipesweb.service;
 
 import ing.yisus.recipesweb.persistence.RecipeEntity;
 import ing.yisus.recipesweb.repository.RecipeRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -32,8 +33,8 @@ public class RecipeService {
                 .orElseThrow(() -> new IllegalArgumentException("Recipe not found with id: " + id));
     }
 
-    public List<RecipeEntity> getAllRecipes() {
-        return recipeRepository.findAll();
+    public Page<RecipeEntity> getAllRecipes(Pageable pageable) {
+        return recipeRepository.findAll(pageable);
     }
 
     public List<RecipeEntity> getRecipesByUserId(Long userId) {
