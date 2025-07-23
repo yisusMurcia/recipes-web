@@ -54,4 +54,9 @@ public class UserService {
         return userRepository.findById(userId)
                 .orElse(null); // Return null if no matching user found
     }
+
+    public void addToFavs(RecipeEntity recipeEntity, UserEntity userEntity){
+        userEntity.getFavs().add(recipeEntity);
+        userRepository.save(userEntity);
+    }
 }

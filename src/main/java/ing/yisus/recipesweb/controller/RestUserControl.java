@@ -3,7 +3,9 @@ package ing.yisus.recipesweb.controller;
 import ing.yisus.recipesweb.Dto.LoginDto;
 import ing.yisus.recipesweb.Dto.RegisterDto;
 import ing.yisus.recipesweb.Dto.UserDto;
+import ing.yisus.recipesweb.persistence.RecipeEntity;
 import ing.yisus.recipesweb.persistence.UserEntity;
+import ing.yisus.recipesweb.service.RecipeService;
 import ing.yisus.recipesweb.service.UserService;
 import ing.yisus.recipesweb.util.UserMapper;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 public class RestUserControl {
     private final UserService userService;
     private final UserMapper userMapper;
+    private final RecipeService recipeService;
     @Value("${app.admin.password}")
     private String adminPassword;
 
@@ -68,5 +71,22 @@ public class RestUserControl {
         }else{
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @PostMapping("{userId]/addFav/{recipeId}")
+    public ResponseEntity<?> addFav(@PathVariable Long userId, @PathVariable Long recipeId) {
+        UserEntity userEntity = userService.findUserById(userId);
+        if(userEntity == null) {
+            return ResponseEntity.badRequest().body("User not found");
+        }
+
+        RecipeEntity recipeEntity = recipeService.getRecipeById(recipeId);
+        if(recipeEntity == null) {
+            return ResponseEntity.badRequest().body("Recipe not found");
+        }
+
+        userService.addToFavs(recipeEntity, userEntity);
+
+        return ResponseEntity.ok(recipeEntity);
     }
 }
