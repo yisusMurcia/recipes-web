@@ -39,12 +39,14 @@ public class RestRecipeControl {
     }
 
     @GetMapping("favs-recipes/{userId}")
-    public ResponseEntity<List<RecipeDto>> getFavsRecipes(@PathVariable Long userId, Pageable pageable) {
-        UserEntity user= userService.findUserById(userId);
+    public ResponseEntity<?> getFavsRecipes(@PathVariable Long userId, Pageable pageable) {
+        UserEntity userEntity = userService.findUserById(userId);
+        if(userEntity == null) {
+            return ResponseEntity.badRequest().body("The user isn´t in the BD");
+        }
 
-        List<RecipeDto> favsRecipes = user.getFavs().stream()
-                .map(recipeMapper::toDto).toList();
-        //Check if the user has any favorite recipes
+        List<RecipeDto> favsRecipes = recipeService.getFavsByUserId(userEntity, pageable)
+                .stream().map(recipeMapper::toDto).toList();
         if (favsRecipes.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
@@ -52,8 +54,14 @@ public class RestRecipeControl {
     }
 
     @GetMapping("user-recipes/{userId}")
-    public ResponseEntity<List<RecipeDto>> getUserRecipes(@PathVariable Long userId) {
-        List<RecipeDto> userRecipes = recipeService.getRecipesByUserId(userId).stream()
+    public ResponseEntity<?> getUserRecipes(@PathVariable Long userId, Pageable pageable) {
+        UserEntity userEntity = userService.findUserById(userId);
+
+        if(userEntity == null) {
+            return ResponseEntity.badRequest().body("The user isn´t in the BD");
+        }
+
+        List<RecipeDto> userRecipes = recipeService.getRecipesByUserId(userEntity.getId(), pageable).stream()
                 .map(recipeMapper::toDto).toList();
         //Check if the user has any recipes
         if (userRecipes.isEmpty()) {

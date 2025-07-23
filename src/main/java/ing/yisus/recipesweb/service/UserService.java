@@ -2,6 +2,7 @@ package ing.yisus.recipesweb.service;
 
 
 import ing.yisus.recipesweb.model.User;
+import ing.yisus.recipesweb.persistence.RecipeEntity;
 import ing.yisus.recipesweb.persistence.UserEntity;
 import ing.yisus.recipesweb.repository.UserRepository;
 import ing.yisus.recipesweb.util.UserMapper;

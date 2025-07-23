@@ -1,6 +1,7 @@
 package ing.yisus.recipesweb.service;
 
 import ing.yisus.recipesweb.persistence.RecipeEntity;
+import ing.yisus.recipesweb.persistence.UserEntity;
 import ing.yisus.recipesweb.repository.RecipeRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -37,7 +38,11 @@ public class RecipeService {
         return recipeRepository.findAll(pageable);
     }
 
-    public List<RecipeEntity> getRecipesByUserId(Long userId) {
-        return recipeRepository.findAllByUserId(userId);
+    public List<RecipeEntity> getRecipesByUserId(Long userId, Pageable pageable) {
+        return recipeRepository.findAllByUserId(userId, pageable);
+    }
+
+    public Page<RecipeEntity> getFavsByUserId(UserEntity userEntity, Pageable pageable) {
+        return recipeRepository.findFavsByUserId(userEntity, pageable);
     }
 }
