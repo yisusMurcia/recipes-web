@@ -73,7 +73,7 @@ public class RestUserControl {
         }
     }
 
-    @PostMapping("{userId]/addFav/{recipeId}")
+    @PostMapping("{userId}/addFav/{recipeId}")
     public ResponseEntity<?> addFav(@PathVariable Long userId, @PathVariable Long recipeId) {
         UserEntity userEntity = userService.findUserById(userId);
         if(userEntity == null) {
