@@ -24,19 +24,10 @@ public class RestUserControl {
     @Value("${app.admin.password}")
     private String adminPassword;
 
-    @PostMapping("validate-user")
-    public ResponseEntity<?> validateUser(@RequestBody UserDto userDto) {
-        UserEntity userFound = userService.findUserByUsernameAndPassword(userDto.getUsername(), userDto.getPassword());
-        if(userFound != null){
-            return ResponseEntity.ok(userFound);
-        }else{
-            return ResponseEntity.notFound().build();
-        }
-    }
 
     @PostMapping("create-user")
     public ResponseEntity<?> createUser(@RequestBody RegisterDto registerDto) {
-        //Validate user, it can't exist some with same username
+        //Validate user, it can't exist some with the same username
         if(userService.findUserByUsername(registerDto.getUsername()) != null){
             return ResponseEntity.badRequest().body("Username already exists");
         }
@@ -50,16 +41,6 @@ public class RestUserControl {
 
         return ResponseEntity.ok(registerDto);
 
-    }
-
-    @GetMapping("userId/{username}")
-    public ResponseEntity<Long> getUserIdByUsername(@PathVariable String username) {
-        UserEntity userEntity = userService.findUserByUsername(username);
-        if (userEntity != null) {
-            return ResponseEntity.ok(userEntity.getId());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
     }
 
     @PostMapping("login")
