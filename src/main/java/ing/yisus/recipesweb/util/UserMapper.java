@@ -21,7 +21,6 @@ public class UserMapper {
     public static UserEntity DtoToEntity(UserDto userDto, Long id) {
         UserEntity userEntity = new UserEntity();
         userEntity.setUsername(userDto.getUsername());
-        userEntity.setPassword(userDto.getPassword());
         userEntity.setRole(userDto.getUserRol().toUpperCase());
         userEntity.setId(id); // Assuming ID is auto-incremented based on count
         userEntity.setFavs(new ArrayList<RecipeEntity>());
@@ -41,7 +40,6 @@ public class UserMapper {
         return UserDto.builder()
                 .id(userEntity.getId())
                 .username(userEntity.getUsername())
-                .password(userEntity.getPassword())
                 .userRol(userEntity.getRole())
                 .build();
     }

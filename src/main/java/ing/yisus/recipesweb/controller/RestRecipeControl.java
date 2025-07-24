@@ -38,19 +38,19 @@ public class RestRecipeControl {
         return ResponseEntity.ok(recipes);
     }
 
-    @GetMapping("favs-recipes/{userId}")
+    @GetMapping("fav-recipes/{userId}")
     public ResponseEntity<?> getFavsRecipes(@PathVariable Long userId, Pageable pageable) {
         UserEntity userEntity = userService.findUserById(userId);
         if(userEntity == null) {
             return ResponseEntity.badRequest().body("The user isn´t in the BD");
         }
 
-        List<RecipeDto> favsRecipes = recipeService.getFavsByUserId(userEntity, pageable)
+        List<RecipeDto> favRecipes = recipeService.getFavsByUserId(userEntity, pageable)
                 .stream().map(recipeMapper::toDto).toList();
-        if (favsRecipes.isEmpty()) {
+        if (favRecipes.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
-        return ResponseEntity.ok(favsRecipes);
+        return ResponseEntity.ok(favRecipes);
     }
 
     @GetMapping("user-recipes/{userId}")
