@@ -23,7 +23,7 @@ public class UserEntity implements Serializable {
     private String password;
     private String role;
     //Map favsRecipes
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "user_favorite_recipes",
             joinColumns = @JoinColumn(name = "user_id"),
