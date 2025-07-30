@@ -1,11 +1,13 @@
 package ing.yisus.recipesweb.controller;
 
 import ing.yisus.recipesweb.Dto.RecipeDto;
+import ing.yisus.recipesweb.persistence.RecipeEntity;
 import ing.yisus.recipesweb.persistence.UserEntity;
 import ing.yisus.recipesweb.service.RecipeService;
 import ing.yisus.recipesweb.service.UserService;
 import ing.yisus.recipesweb.util.RecipeMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,7 @@ public class RestRecipeControl {
     private final RecipeService recipeService;
     private final RecipeMapper recipeMapper;
     private final UserService userService;
+    private int totalPages;
 
     @GetMapping("nextRecipeId")
     public ResponseEntity<Long> getNextRecipeId() {
@@ -29,9 +32,11 @@ public class RestRecipeControl {
 
     @GetMapping("all")
     public ResponseEntity<List<RecipeDto>> getAllRecipes(Pageable pageable) {
-        List<RecipeDto> recipes = recipeService.getAllRecipes(pageable).stream()
+        Page<RecipeEntity> recipesPage = recipeService.getAllRecipes(pageable);
+        //Save total page
+        totalPages = recipesPage.getTotalPages();
+        List<RecipeDto> recipes = recipesPage.stream()
                 .map(recipeMapper::toDto).toList();
-        System.out.println(recipes);
         if (recipes.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
@@ -45,7 +50,11 @@ public class RestRecipeControl {
             return ResponseEntity.badRequest().body("The user isn´t in the BD");
         }
 
-        List<RecipeDto> favRecipes = recipeService.getFavsByUserId(userEntity, pageable)
+        Page<RecipeEntity> favRecipesPage = recipeService.getFavsByUserId(userEntity, pageable);
+        //Save total pages
+        totalPages = favRecipesPage.getTotalPages();
+
+        List<RecipeDto> favRecipes = favRecipesPage
                 .stream().map(recipeMapper::toDto).toList();
         if (favRecipes.isEmpty()) {
             return ResponseEntity.noContent().build();
@@ -61,7 +70,11 @@ public class RestRecipeControl {
             return ResponseEntity.badRequest().body("The user isn´t in the BD");
         }
 
-        List<RecipeDto> userRecipes = recipeService.getRecipesByUserId(userEntity.getId(), pageable).stream()
+        Page<RecipeEntity> userRecipesPage = recipeService.getRecipesByUserId(userEntity.getId(), pageable);
+        //Save total page
+        totalPages = userRecipesPage.getTotalPages();
+
+        List<RecipeDto> userRecipes = userRecipesPage.stream()
                 .map(recipeMapper::toDto).toList();
         //Check if the user has any recipes
         if (userRecipes.isEmpty()) {
@@ -86,5 +99,10 @@ public class RestRecipeControl {
         }
         RecipeDto recipe = recipeMapper.toDto(recipeService.getRecipeById(id));
         return ResponseEntity.ok(recipe);
+    }
+
+    @GetMapping("total-pages")
+    public ResponseEntity<Integer> getTotalPages() {
+        return ResponseEntity.ok(totalPages);
     }
 }

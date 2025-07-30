@@ -13,7 +13,7 @@ import java.util.List;
 
 @Repository
 public interface RecipeRepository extends JpaRepository<RecipeEntity, Long> {
-    List<RecipeEntity> findAllByUserId(Long userId, Pageable pageable);
+    Page<RecipeEntity> findAllByUserId(Long userId, Pageable pageable);
 
     @Query("SELECT r FROM UserEntity user JOIN user.favs r")
     Page<RecipeEntity> findFavsByUserId(@Param("user")UserEntity userEntity, Pageable pageable);

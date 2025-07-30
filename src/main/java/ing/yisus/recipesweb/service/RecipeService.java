@@ -38,7 +38,7 @@ public class RecipeService {
         return recipeRepository.findAll(pageable);
     }
 
-    public List<RecipeEntity> getRecipesByUserId(Long userId, Pageable pageable) {
+    public Page<RecipeEntity> getRecipesByUserId(Long userId, Pageable pageable) {
         return recipeRepository.findAllByUserId(userId, pageable);
     }
 
