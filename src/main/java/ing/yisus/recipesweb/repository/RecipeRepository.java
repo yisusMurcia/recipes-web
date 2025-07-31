@@ -19,4 +19,6 @@ public interface RecipeRepository extends JpaRepository<RecipeEntity, Long> {
     Page<RecipeEntity> findFavsByUserId(@Param("user")UserEntity userEntity, Pageable pageable);
 
     UserEntity user(UserEntity user);
+
+    boolean existsByIdAndFavs_Id(Long recipeId, Long userId);
 }

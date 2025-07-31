@@ -105,4 +105,10 @@ public class RestRecipeControl {
     public ResponseEntity<Integer> getTotalPages() {
         return ResponseEntity.ok(totalPages);
     }
+
+    @GetMapping("{recipeId}/isFav/{userId}")
+    public ResponseEntity<Boolean> isFav(@PathVariable Long recipeId, @PathVariable Long userId) {
+        boolean isFav = recipeService.hasFavorite(recipeId, userId);
+        return ResponseEntity.ok(isFav);
+    }
 }

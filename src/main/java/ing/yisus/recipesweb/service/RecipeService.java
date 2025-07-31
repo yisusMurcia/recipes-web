@@ -45,4 +45,8 @@ public class RecipeService {
     public Page<RecipeEntity> getFavsByUserId(UserEntity userEntity, Pageable pageable) {
         return recipeRepository.findFavsByUserId(userEntity, pageable);
     }
+
+    public boolean hasFavorite(Long recipeId, Long userId){
+        return recipeRepository.existsByIdAndFavs_Id(recipeId, userId);
+    }
 }
