@@ -59,4 +59,9 @@ public class UserService {
         userEntity.getFavs().add(recipeEntity);
         userRepository.save(userEntity);
     }
+
+    public void removeFromFavs(RecipeEntity recipeEntity, UserEntity userEntity){
+        userEntity.getFavs().remove(recipeEntity);
+        userRepository.save(userEntity);
+    }
 }

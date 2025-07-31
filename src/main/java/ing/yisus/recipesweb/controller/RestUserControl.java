@@ -66,8 +66,33 @@ public class RestUserControl {
             return ResponseEntity.badRequest().body("Recipe not found");
         }
 
-        userService.addToFavs(recipeEntity, userEntity);
+        if(recipeService.hasFavorite(recipeId, userId)) {
+            userService.addToFavs(recipeEntity, userEntity);
+            return ResponseEntity.ok(recipeEntity);
+        }else {
+            return ResponseEntity.badRequest().body("Recipe already in favorites");
+        }
 
-        return ResponseEntity.ok(recipeEntity);
+    }
+
+    @PostMapping("{userId}/removeFav/{recipeId}")
+    public ResponseEntity<?> removeFav(@PathVariable Long userId, @PathVariable Long recipeId) {
+        UserEntity userEntity = userService.findUserById(userId);
+        if(userEntity == null) {
+            return ResponseEntity.badRequest().body("User not found");
+        }
+
+        RecipeEntity recipeEntity = recipeService.getRecipeById(recipeId);
+        if(recipeEntity == null) {
+            return ResponseEntity.badRequest().body("Recipe not found");
+        }
+
+        if(!recipeService.hasFavorite(recipeId, userId)) {
+            userService.removeFromFavs(recipeEntity, userEntity);
+            return ResponseEntity.ok(recipeEntity);
+        }else{
+            return ResponseEntity.badRequest().body("Recipe already in favorites");
+        }
+
     }
 }
