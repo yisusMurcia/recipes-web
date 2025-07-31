@@ -47,6 +47,6 @@ public class RecipeService {
     }
 
     public boolean hasFavorite(Long recipeId, Long userId){
-        return recipeRepository.existsByIdAndFavs_Id(recipeId, userId);
+        return recipeRepository.existsByIdAndFavsId(recipeId, userId);
     }
 }

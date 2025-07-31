@@ -20,5 +20,11 @@ public interface RecipeRepository extends JpaRepository<RecipeEntity, Long> {
 
     UserEntity user(UserEntity user);
 
-    boolean existsByIdAndFavs_Id(Long recipeId, Long userId);
+    @Query(value = """
+    SELECT CASE WHEN COUNT(*) > 0 THEN true ELSE false END
+    FROM user_favorite_recipes
+    WHERE user_id = :userId AND recipe_id = :recipeId
+""", nativeQuery = true)
+    boolean existsByIdAndFavsId(@Param("userId") Long userId, @Param("recipeId") Long recipeId);
+
 }

@@ -18,16 +18,6 @@ public class UserMapper {
 
     private final UserService userService;
 
-    public static UserEntity DtoToEntity(UserDto userDto, Long id) {
-        UserEntity userEntity = new UserEntity();
-        userEntity.setUsername(userDto.getUsername());
-        userEntity.setRole(userDto.getUserRol().toUpperCase());
-        userEntity.setId(id); // Assuming ID is auto-incremented based on count
-        userEntity.setFavs(new ArrayList<RecipeEntity>());
-        userEntity.setFavs(new ArrayList<RecipeEntity>());
-        return userEntity;
-    }
-
     public static User entityToModel(UserEntity userEntity) {
         return User.builder()
                 .username(userEntity.getUsername())

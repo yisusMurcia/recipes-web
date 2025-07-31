@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Data
@@ -29,5 +29,5 @@ public class UserEntity implements Serializable {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "recipe_id")
     )
-    private Set<RecipeEntity> favs;
+    private List<RecipeEntity> favs;
 }
