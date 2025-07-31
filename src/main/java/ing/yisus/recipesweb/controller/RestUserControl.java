@@ -66,7 +66,7 @@ public class RestUserControl {
             return ResponseEntity.badRequest().body("Recipe not found");
         }
 
-        if(recipeService.hasFavorite(recipeId, userId)) {
+        if(!recipeService.hasFavorite(recipeId, userId)) {
             userService.addToFavs(recipeEntity, userEntity);
             return ResponseEntity.ok(recipeEntity);
         }else {
@@ -87,7 +87,7 @@ public class RestUserControl {
             return ResponseEntity.badRequest().body("Recipe not found");
         }
 
-        if(!recipeService.hasFavorite(recipeId, userId)) {
+        if(recipeService.hasFavorite(recipeId, userId)) {
             userService.removeFromFavs(recipeEntity, userEntity);
             return ResponseEntity.ok(recipeEntity);
         }else{

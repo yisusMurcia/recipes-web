@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 
 @Repository
 public interface RecipeRepository extends JpaRepository<RecipeEntity, Long> {
@@ -23,8 +22,8 @@ public interface RecipeRepository extends JpaRepository<RecipeEntity, Long> {
     @Query(value = """
     SELECT CASE WHEN COUNT(*) > 0 THEN true ELSE false END
     FROM user_favorite_recipes
-    WHERE user_id = :userId AND recipe_id = :recipeId
+    WHERE recipe_id = :recipeId AND user_id = :userId
 """, nativeQuery = true)
-    boolean existsByIdAndFavsId(@Param("userId") Long userId, @Param("recipeId") Long recipeId);
+    boolean existsByRecipeIdAndUserId(@Param("recipeId") Long recipeId, @Param("userId") Long userId);
 
 }

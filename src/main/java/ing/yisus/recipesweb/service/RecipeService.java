@@ -6,7 +6,6 @@ import ing.yisus.recipesweb.repository.RecipeRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import java.util.List;
 
 @Service
 public class RecipeService {
@@ -47,6 +46,6 @@ public class RecipeService {
     }
 
     public boolean hasFavorite(Long recipeId, Long userId){
-        return recipeRepository.existsByIdAndFavsId(recipeId, userId);
+        return recipeRepository.existsByRecipeIdAndUserId(recipeId, userId);
     }
 }
