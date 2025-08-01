@@ -109,7 +109,6 @@ public class RestRecipeControl {
     @GetMapping("{recipeId}/isFav/{userId}")
     public ResponseEntity<Boolean> isFav(@PathVariable Long recipeId, @PathVariable Long userId) {
         boolean isFav = recipeService.hasFavorite(recipeId, userId);
-        System.out.println("Recipe" + recipeId + (isFav ? "is in favorites" : "Recipe is not in favorites"));
         return ResponseEntity.ok(isFav);
     }
 }

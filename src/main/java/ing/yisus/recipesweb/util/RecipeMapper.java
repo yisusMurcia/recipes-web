@@ -31,6 +31,7 @@ public class RecipeMapper {
                 .instructions(recipe.getInstructions())
                 .foodIntentions(List.of(recipe.getFoodIntentions().split(",")))
                 .foodTypes(List.of(recipe.getFoodTypes().split(",")))
+                .userId(recipe.getUser().getId())
                 .build();
     }
 }
