@@ -25,7 +25,7 @@ public class RestRecipeControl {
     private final UserService userService;
     private int totalPages;
 
-    @GetMapping("nextRecipeId")
+    @GetMapping("next-id")
     public ResponseEntity<Long> getNextRecipeId() {
         return ResponseEntity.ok(recipeService.getRecipeCount());
     }
@@ -46,7 +46,7 @@ public class RestRecipeControl {
     @GetMapping("fav-recipes/{userId}")
     public ResponseEntity<?> getFavsRecipes(@PathVariable Long userId, Pageable pageable) {
         UserEntity userEntity = userService.findUserById(userId);
-        if(userEntity == null) {
+        if (userEntity == null) {
             return ResponseEntity.badRequest().body("The user isn´t in the BD");
         }
 
@@ -66,7 +66,7 @@ public class RestRecipeControl {
     public ResponseEntity<?> getUserRecipes(@PathVariable Long userId, Pageable pageable) {
         UserEntity userEntity = userService.findUserById(userId);
 
-        if(userEntity == null) {
+        if (userEntity == null) {
             return ResponseEntity.badRequest().body("The user isn´t in the BD");
         }
 
@@ -84,7 +84,7 @@ public class RestRecipeControl {
     }
 
     @PostMapping("update")
-        public ResponseEntity<RecipeDto> update(@RequestBody RecipeDto recipeDto) {
+    public ResponseEntity<RecipeDto> update(@RequestBody RecipeDto recipeDto) {
         if (recipeDto.getId() == null || recipeDto.getId() < 0) {
             return ResponseEntity.badRequest().body(null);
         }
@@ -110,5 +110,17 @@ public class RestRecipeControl {
     public ResponseEntity<Boolean> isFav(@PathVariable Long recipeId, @PathVariable Long userId) {
         boolean isFav = recipeService.hasFavorite(recipeId, userId);
         return ResponseEntity.ok(isFav);
+    }
+
+    @PostMapping("create")
+    public ResponseEntity<RecipeDto> createRecipe(@RequestBody RecipeDto recipeDto) {
+        //Ignore the id
+        recipeDto.setId(recipeService.getRecipeCount());
+        UserEntity userEntity = userService.findUserById(recipeDto.getUserId());
+        RecipeEntity recipe = recipeMapper.toEntity(recipeDto, userEntity);
+
+        recipeService.saveRecipe(recipe);
+        return ResponseEntity.ok(recipeMapper.toDto(recipe));
+
     }
 }
